@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:elevation="10dp"
+    android:layout_margin="10dp"
+    android:background="@drawable/customborder">
+
+    <ImageView
+        android:id="@+id/dashboardImageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="9dp"
+        android:background="@drawable/background_profile_photo"
+        android:src="@drawable/ic_book_image" />
+
+    <TextView
+        android:id="@+id/txtDashboardRowItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/dashboardImageView"
+        android:text="List Item"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/authorNameDashboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name of the author"
+        android:layout_toEndOf="@id/dashboardImageView"
+        android:layout_alignTop="@id/txtDashboardRowItem"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/authorNameDashboard"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="23dp"
+        android:layout_toEndOf="@id/dashboardImageView"
+        android:text="Rs 299"
+        android:textColor="#008542"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/star_icon_dashboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/dashboard_rating"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="19dp"
+        android:layout_toStartOf="@+id/dashboard_rating"
+        android:src="@drawable/ic_rating"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="30dp"
+        android:id="@+id/dashboard_rating"
+        android:text="2.9"
+        android:textColor="#FED600" />
+
+</RelativeLayout>

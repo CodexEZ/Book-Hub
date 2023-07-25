@@ -2,7 +2,6 @@ package com.example.bookhubv22.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,23 +13,27 @@ import com.example.bookhubv22.ARG_PARAM1
 import com.example.bookhubv22.ARG_PARAM2
 import com.example.bookhubv22.R
 import com.example.bookhubv22.adapter.DashboardRecyclerAdapter
+import data_class.Book
 
 class DashboardFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     lateinit var layoutManager: LinearLayoutManager
-    val bookList = arrayListOf<String>(
-        "P.S I love you",
-        "The Great Gatsby",
-        "Anna Karenina",
-        "Madame Bovary",
-        "Lolita",
-        "Middlemarch",
-        "The Adventures of Huckleberry Finn",
-        "Moby-Dick",
-        "The Lord of the Rings"
+    val bookInfoList = arrayListOf<Book>(
+        Book("P.S. I love You", "Cecelia Ahern", "Rs. 299", "4.5", R.drawable.ps_ily),
+        Book("The Great Gatsby", "F. Scott Fitzgerald", "Rs. 399", "4.1", R.drawable.great_gatsby),
+        Book("Anna Karenina", "Leo Tolstoy", "Rs. 199", "4.3", R.drawable.anna_kare),
+        Book("Madame Bovary", "Gustave Flaubert", "Rs. 500", "4.0", R.drawable.madame),
+        Book("War and Peace", "Leo Tolstoy", "Rs. 249", "4.8", R.drawable.war_and_peace),
+        Book("Lolita", "Vladimir Nabokov", "Rs. 349", "3.9", R.drawable.lolita),
+        Book("Middlemarch", "George Eliot", "Rs. 599", "4.2", R.drawable.middlemarch),
+        Book("The Adventures of Huckleberry Finn", "Mark Twain", "Rs. 699", "4.5", R.drawable.adventures_finn),
+        Book("Moby-Dick", "Herman Melville", "Rs. 499", "4.5", R.drawable.moby_dick),
+        Book("The Lord of the Rings", "J.R.R Tolkien", "Rs. 749", "5.0", R.drawable.lord_of_rings)
     )
+
+
     lateinit var recyclerAdapter: DashboardRecyclerAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +55,7 @@ class DashboardFragment : Fragment() {
         }
         layoutManager = LinearLayoutManager(activity)
 
-        recyclerAdapter = DashboardRecyclerAdapter(activity as Context,bookList)
+        recyclerAdapter = DashboardRecyclerAdapter(activity as Context,bookInfoList)
 
         recyclerDashboard.adapter = recyclerAdapter
 

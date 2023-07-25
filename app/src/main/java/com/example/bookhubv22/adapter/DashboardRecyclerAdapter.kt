@@ -8,10 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 import com.example.bookhubv22.R
+import data_class.Book
 
-class DashboardRecyclerAdapter(val context: Context, val itemList: ArrayList<String>) : RecyclerView.Adapter<DashboardRecyclerAdapter.DashboardViewHolder>(){
+class DashboardRecyclerAdapter(val context: Context, val itemList: ArrayList<Book>) : RecyclerView.Adapter<DashboardRecyclerAdapter.DashboardViewHolder>(){
     class DashboardViewHolder(view:View):RecyclerView.ViewHolder(view){
-        val textView = view.findViewById<TextView>(R.id.txtDashboardRowItem)
+        val textView = view.findViewById<TextView>(R.id.txtBookName)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DashboardViewHolder {
@@ -24,7 +25,7 @@ class DashboardRecyclerAdapter(val context: Context, val itemList: ArrayList<Str
     }
 
     override fun onBindViewHolder(holder: DashboardViewHolder, position: Int) {
-        val text = itemList[position]
+        val text = itemList[position].bookAuthor
         holder.textView.text = text
     }
 

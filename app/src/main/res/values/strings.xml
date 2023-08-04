@@ -24,4 +24,6 @@
     <string name="holds_book_image">Holds book image</string>
     <string name="holds_the_star_icon">Holds the star icon</string>
     <string name="add_to_favourites">Add to favourites</string>
+    <string name="sort">sort</string>
+    <string name="book_hub">Book Hub</string>
 </resources>

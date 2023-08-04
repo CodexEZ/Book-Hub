@@ -10,8 +10,11 @@
         android:id="@+id/textAbout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_about"
+        android:text="This app was made with the help of internshala trainings"
         android:textColor="@color/black"
-        android:textSize="30sp"/>
+        android:layout_centerInParent="true"
+        android:layout_margin="5dp"
+        android:textAlignment="center"
+        android:textSize="20sp"/>
 
 </RelativeLayout>

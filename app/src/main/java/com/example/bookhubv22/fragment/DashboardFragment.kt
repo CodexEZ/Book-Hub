@@ -7,7 +7,11 @@ import android.content.Intent
 import android.opengl.Visibility
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -31,6 +35,7 @@ import com.example.bookhubv22.adapter.DashboardRecyclerAdapter
 import com.example.bookhubv22.utils.Book
 import com.example.bookhubv22.utils.ConnectionManager
 import org.json.JSONException
+import java.util.Collections
 
 class DashboardFragment : Fragment() {
     // TODO: Rename and change types of parameters
@@ -41,6 +46,14 @@ class DashboardFragment : Fragment() {
     lateinit var progressLayout: RelativeLayout
     lateinit var recyclerDashboard : RecyclerView
     var bookInfoList = arrayListOf<Book>()
+    var ratingComparator = Comparator<Book> { book1, book2 ->
+        if(book1.bookRating.compareTo(book2.bookRating, true)==0){
+            book1.bookName.compareTo(book2.bookName,true)
+        }
+        else{
+            book1.bookRating.compareTo(book2.bookRating,true)
+        }
+    }
 
 
     lateinit var recyclerAdapter: DashboardRecyclerAdapter
@@ -57,11 +70,13 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
+        setHasOptionsMenu(true)
 
         recyclerDashboard = view.findViewById<RecyclerView>(R.id.recycle)
         layoutManager = LinearLayoutManager(activity)
         progressLayout = view.findViewById(R.id.loading)
         progressBar = view.findViewById(R.id.progressBar)
+
 
 
         val queue = Volley.newRequestQueue(activity as Context)
@@ -113,7 +128,10 @@ class DashboardFragment : Fragment() {
                     }
                 },
                 Response.ErrorListener {
-                    println("Response is $it")
+                    if(activity != null){
+                        Toast.makeText(activity as Context, "Some error occured!",Toast.LENGTH_SHORT).show()
+                        Log.d("Error","Line 116")
+                    }
                 }) {
                 override fun getHeaders(): MutableMap<String, String> {
                     val headers = HashMap<String, String>()
@@ -160,5 +178,19 @@ class DashboardFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+       inflater?.inflate(R.menu.dashboard_menu,menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item?.itemId
+        if(id == R.id.action_sort){
+            Collections.sort(bookInfoList,ratingComparator)
+            bookInfoList.reverse()
+        }
+        recyclerAdapter.notifyDataSetChanged()
+        return super.onOptionsItemSelected(item)
     }
 }
